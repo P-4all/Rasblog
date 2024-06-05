@@ -1,0 +1,65 @@
+<%- include('partials/header.ejs') %>
+<ul class="nav nav-pills">
+    <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
+    <li class="nav-item"><a href="/create" class="nav-link">New post</a></li>
+    <% if(locals.title) {%>
+        <li class="nav-item">
+            <form action="/blog_content" method="POST">
+                <input type="hidden" name="x" value="<%=0%>" required>
+                <input type="hidden" name="date" value="<%=date_str[0]%>" required>
+                <input type="hidden" name="op" value="<%=op_str[0]%>" required>
+                <input type="hidden" name="fnum" value="<%=fnum%>" required>
+                <input type="submit" class="nav-link" value="Content"/>
+            </form></li>
+    <%}else{%>
+            <li class="nav-item"><a href="/" class="nav-link">Content</a></li>
+            <%}%> 
+<!--    <li class="nav-item"><a href="#" class="nav-link">About</a></li> -->
+  </ul>
+</header>
+</div>
+<div class="container d-flex flex-wrap justify-content-center py-0 mb-0">
+    <h1 id= main-title >Welcome to Ra's blog</h1> 
+</div>
+
+<div class="container d-flex align-items-stretch flex-wrap felx-row w-100 justify-content-evenly py-2 mb-2">
+    <!--First column-->
+
+    <div class="col-l-6 align-items-stretch py-1">
+        <div class="py-1">
+            <img src="images/blog.jpg" alt="blog word made from scrable bits "  class="responsive"/>
+        </div>
+        <div class="py-1">
+            <form action="/create" method="GET"class="flex-wrap" >
+                <input type="submit" class="btn btn-primary" value="Create new post">
+            </form>
+        </div>
+    </div>
+    <!-- Second column-->
+    <div class="col-l-6 align-items-stretch py-1 long-string">
+        <h2 class="mb-1 text-center" style="font-family: Playpen Sans">Posts: </h2>
+        <div >
+            <% if(locals.title) {%>
+                <ul class="list">
+                    <%for(let i=0;i<=fnum;i++){%>
+                        <li>
+                            <form action="/blog_content" method="POST">
+                                <input type="hidden" name="x" value="<%=i%>" required>
+                                <input type="hidden" name="date" value="<%=date_str[i]%>" required>
+                                <input type="hidden" name="op" value="<%=op_str[i]%>" required>
+                                <input type="hidden" name="fnum" value="<%=fnum%>" required>
+                                <input type="submit" class="link-button" value="<%=title[i]%>"/>
+                            </form>
+                            <p><%=op_str[i]%><%=date_str[i]%></p>
+                        </li>
+                    <%}%>
+                </ul>
+            <%}else{%>
+                <p>There is no blogs yet</p>
+            <%}%>
+        </div>
+    </div>
+
+
+</div>
+<%- include('partials/footer.ejs') %>

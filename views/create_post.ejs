@@ -1,0 +1,56 @@
+<%- include('partials/header.ejs') %>
+<ul class="nav nav-pills px-2">
+  <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Home</a></li>
+  <li class="nav-item"><a href="/create" class="nav-link active">New post</a></li>
+  <% if(locals.title) {%>
+    <li class="nav-item">
+        <form action="/blog_content" method="POST">
+            <input type="hidden" name="x" value="<%=0%>" required>
+            <input type="hidden" name="date" value="<%=date_str[0]%>" required>
+            <input type="hidden" name="op" value="<%=op_str[0]%>" required>
+            <input type="hidden" name="fnum" value="<%=fnum%>" required>
+            <input type="submit" class="nav-link" value="Content"/>
+        </form></li>
+<%}else{%>
+        <li class="nav-item"><a href="/" class="nav-link">Content</a></li>
+        <%}%> 
+ <!-- <li class="nav-item"><a href="/blog_content" class="nav-link">Content</a></li>  -->
+<!--    <li class="nav-item"><a href="#" class="nav-link">About</a></li> -->
+</ul>
+</header>
+</div>
+<div class="container d-flex flex-wrap justify-content-center py-0 mb-1">
+  <h1 class="title-new" >Write a title</h1> 
+</div>
+<div class="container d-flex flex-wrap justify-content-center py-0 mb-1">
+  <h2 class="sub-title"><em>and unleash your imagination</em></h2>
+</div>
+<div class="container mb-3">
+  <form action="/new" method="POST">
+    <div class="row mb-3">
+      <label for="title post" class="col-sm-2 col-form-label">Title:</label>
+      <div class="col-sm-10">
+        <textarea id="txtarea" spellcheck="true" placeholder="type here..." rows="1" type="text" name="title_p" class="form-control" id="inputPassword3" required></textarea>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="text_post" class="col-sm-2 col-form-label">Post:</label>
+      <div class="col-sm-10">
+        <textarea id="txtarea" spellcheck="true" placeholder="type here..." rows="10" type="text" name="text_p" class="form-control" id="inputPassword3" required></textarea>
+      </div>
+    </div>
+    <div class="d-flex flex-row-reverse">
+    <button type="submit" class="btn btn-primary">Save</button>
+  </div>
+  </form>
+</div>
+
+<!-- <form action="/new" method="POST">
+  <label for="title post">Title Post:</label>
+  <input type="text" name="title_p" required>
+  <label for="text_post">Post here:</label>
+  <input type="text" name="text_p" required>
+  <input type="submit" value="Post">
+</form> -->
+
+<%- include('partials/footer.ejs') %>

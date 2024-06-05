@@ -1,0 +1,50 @@
+html{
+    font-size:15px;
+  }
+.link-button { 
+    background: none;
+    border: none;
+    color: #1a0dab;
+    text-decoration: underline;
+    cursor: pointer; 
+}
+.title-new{
+    font-family: 'Ysabeau Infant', sans-serif;
+    font-weight: 800;
+    font-size:3rem;
+}
+.sub-title{
+    font-family: 'Ysabeau Infant', sans-serif;
+    font-weight: 100;
+    font-size:2rem;
+}
+#main-title {
+    font-family: 'Courgette', cursive;
+}
+.list{
+    list-style-type: none;
+    font-family: "Playpen Sans", cursive;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+.responsive {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+  }
+.long-string{
+    max-width: 100%; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
+/*Remove the scrollbar from Chrome, Safari, Edge and IE*/
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+* {
+  -ms-overflow-style: none !important;
+}

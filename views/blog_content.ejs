@@ -1,0 +1,145 @@
+<%- include('partials/header.ejs') %>
+<ul class="nav nav-pills">
+    <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Home</a></li>
+    <li class="nav-item"><a href="/create" class="nav-link">New post</a></li>
+    <% if(locals.title) {%>
+        <li class="nav-item">
+            <form action="/blog_content" method="POST">
+                <input type="hidden" name="x" value="<%=0%>" required>
+                <input type="hidden" name="date" value="<%=date_str[0]%>" required>
+                <input type="hidden" name="op" value="<%=op_str[0]%>" required>
+                <input type="hidden" name="fnum" value="<%=fnum%>" required>
+                <input type="submit" class="nav-link active" value="Content"/>
+            </form></li>
+    <%}else{%>
+            <li class="nav-item"><a href="/" class="nav-link active">Content</a></li>
+            <%}%> 
+     <!-- <li class="nav-item"><a href="/blog_content" class="nav-link">Content</a></li>  -->
+<!--    <li class="nav-item"><a href="#" class="nav-link">About</a></li> -->
+  </ul>
+</header>
+</div>
+<div class="container d-flex flex-wrap justify-content-center py-3 mb-2">
+    <H1><%=b_title%></H1>
+</div>
+<div class="container d-flex flex-wrap justify-content-center py-3 mb-2">
+    <p><%=b_text%></p>
+</div>
+<div class="container d-flex flex-wrap py-3 mb-2">
+    <p><%=b_op[b_number]%><%=b_date_str[b_number]%></p>
+</div>
+
+
+<div class="container d-flex flex-wrap justify-content-between align-items-center py-3 mb-2">
+    <%console.log(b_number);%>
+    <%console.log(b_fnum);%>
+    <%if((b_number==0)&&(b_fnum==0)) {%>
+        <div class="col-auto">
+
+        </div>
+        <div class="row col-auto justify-content-center">
+            <div class="col-auto">
+                <form action="/del" method="POST">
+                    <input type="hidden" name="x" value="<%=b_number%>" required>
+                    <input type="submit" class="btn btn-primary"value="Delete">
+                </form>
+            </div>
+            <div class="col-auto">
+                <form action="/mod" method="POST">
+                    <input type="hidden" name="x" value="<%=b_number%>" required>
+                    <input type="submit" class="btn btn-primary" value="Edit">
+                </form>
+            </div>
+        </div>
+        <div class="col-auto">
+
+        </div>
+    <%}else if((b_number==0)&&(b_number < b_fnum)) {%>
+        <div class="col-auto">
+
+        </div>
+        <div class="row col-auto justify-content-center">
+            <div class="col-auto">
+                <form action="/del" method="POST">
+                    <input type="hidden" name="x" value="<%=b_number%>" required>
+                    <input type="submit" class="btn btn-primary"value="Delete">
+                </form>
+            </div>
+            <div class="col-auto">
+                <form action="/mod" method="POST">
+                    <input type="hidden" name="x" value="<%=b_number%>" required>
+                    <input type="submit" class="btn btn-primary" value="Edit">
+                </form>
+            </div>
+        </div>
+        <div class="row col-auto" style="text-align:end">
+            <form action="/blog_content" method="POST">
+                <input type="hidden" name="x" value="<%=parseInt(b_number)+parseInt(1)%>" required>
+                <input type="hidden" name="date" value="<%=b_date_str[parseInt(b_number)+parseInt(1)]%>" required>
+                <input type="hidden" name="op" value="<%=b_op[parseInt(b_number)+parseInt(1)]%>" required>
+                <input type="hidden" name="fnum" value="<%=b_fnum%>" required>
+                <input type="submit" class="btn btn-primary" value="next">
+            </form>
+        </div>
+    <%}else if((b_number >0)&&(b_number < b_fnum)){%>   
+        <div class="col-auto">
+            <form action="/blog_content" method="POST">
+                <input type="hidden" name="x" value="<%=b_number-1%>" required>
+                <input type="hidden" name="date" value="<%=b_date_str[b_number-1]%>" required>
+                <input type="hidden" name="op" value="<%=b_op[b_number-1]%>" required>
+                <input type="hidden" name="fnum" value="<%=b_fnum%>" required>
+                <input type="submit" class="btn btn-primary" value="Previous">
+            </form>
+        </div>
+        <div class="row col-auto justify-content-center">
+            <div class="col-auto">
+                <form action="/del" method="POST">
+                    <input type="hidden" name="x" value="<%=b_number%>" required>
+                    <input type="submit" class="btn btn-primary"value="Delete">
+                </form>
+            </div>
+            <div class="col-auto">
+                <form action="/mod" method="POST">
+                    <input type="hidden" name="x" value="<%=b_number%>" required>
+                    <input type="submit" class="btn btn-primary" value="Edit">
+                </form>
+            </div>
+        </div>
+        <div class="row col-auto" style="text-align:end">
+            <form action="/blog_content" method="POST">
+                <input type="hidden" name="x" value="<%=parseInt(b_number)+parseInt(1)%>" required>
+                <input type="hidden" name="date" value="<%=b_date_str[parseInt(b_number)+parseInt(1)]%>" required>
+                <input type="hidden" name="op" value="<%=b_op[parseInt(b_number)+parseInt(1)]%>" required>
+                <input type="hidden" name="fnum" value="<%=b_fnum%>" required>
+                <input type="submit" class="btn btn-primary" value="next">
+            </form>
+        </div>
+    <%}else if((b_number == b_fnum)){%>   
+        <div class="col-auto">
+            <form action="/blog_content" method="POST">
+                <input type="hidden" name="x" value="<%=b_number-1%>" required>
+                <input type="hidden" name="date" value="<%=b_date_str[b_number-1]%>" required>
+                <input type="hidden" name="op" value="<%=b_op[b_number-1]%>" required>
+                <input type="hidden" name="fnum" value="<%=b_fnum%>" required>
+                <input type="submit" class="btn btn-primary" value="Previous">
+            </form>
+        </div>
+        <div class="row col-auto justify-content-center">
+            <div class="col-auto">
+                <form action="/del" method="POST">
+                    <input type="hidden" name="x" value="<%=b_number%>" required>
+                    <input type="submit" class="btn btn-primary"value="Delete">
+                </form>
+            </div>
+            <div class="col-auto">
+                <form action="/mod" method="POST">
+                    <input type="hidden" name="x" value="<%=b_number%>" required>
+                    <input type="submit" class="btn btn-primary" value="Edit">
+                </form>
+            </div>
+        </div>
+        <div class="col-auto">
+        </div>
+    <%}%>
+</div>
+<%- include('partials/footer.ejs') %>
